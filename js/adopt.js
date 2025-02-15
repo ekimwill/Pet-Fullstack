@@ -1,6 +1,4 @@
-// We'll retrieve the variables isLoggedIn and currentUser from the inline <script> in adopt_user.php
 
-// 1) Scroll to Pets
 function scrollToPets() {
     const petsSection = document.getElementById('petsSection');
     if (petsSection) {
@@ -8,7 +6,6 @@ function scrollToPets() {
     }
   }
   
-  // 2) Adoption Modal Functions
   function openAdoptionModal() {
     document.getElementById('adoptionModal').style.display = 'flex';
   }
@@ -16,7 +13,6 @@ function scrollToPets() {
     document.getElementById('adoptionModal').style.display = 'none';
   }
   
-  // 3) Attach event listeners to Adopt buttons
   document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.adopt-button').forEach(button => {
       button.addEventListener('click', function(e) {
@@ -24,20 +20,17 @@ function scrollToPets() {
         if (!isLoggedIn) {
           alert('Please log in first to adopt a pet.');
         } else {
-          // Set the hidden pet_id field based on the clicked button
           document.getElementById('pet_id').value = this.getAttribute('data-pet-id');
           openAdoptionModal();
         }
       });
     });
   
-    // Close modal when the close button is clicked
     const closeButton = document.querySelector('.close-button');
     if (closeButton) {
       closeButton.addEventListener('click', closeAdoptionModal);
     }
   
-    // 4) Adoption Form Submission (AJAX)
     const adoptionForm = document.getElementById('adoptionForm');
     if (adoptionForm) {
       adoptionForm.addEventListener('submit', function(e) {
@@ -55,7 +48,6 @@ function scrollToPets() {
         formData.append('pet_id', petId);
         formData.append('adopterAge', adopterAge);
         formData.append('adoptionReason', adoptionReason);
-        // Pass the current user if needed
         formData.append('requester', currentUser);
   
         fetch('submit_adoption.php', {
@@ -74,7 +66,6 @@ function scrollToPets() {
       });
     }
   
-    // 5) Close the modal if user clicks outside the modal content
     window.addEventListener('click', function(e) {
       const modal = document.getElementById('adoptionModal');
       if (e.target === modal) {

@@ -1,10 +1,10 @@
 <?php
 // db.php
 $host    = 'localhost';
-$port    = '3307';       // Updated port
-$db      = 'petstore';   // Your database name
-$user    = 'root';       // Your database user
-$pass    = '';           // Your database password
+$port    = '3307';      
+$db      = 'petstore';  
+$user    = 'root';      
+$pass    = '';         
 $charset = 'utf8mb4';
 
 
@@ -18,7 +18,6 @@ $options = [
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
-    // In production, log this error instead of displaying it
     die("Database connection failed: " . $e->getMessage());
 }
 ?>

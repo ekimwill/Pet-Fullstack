@@ -1,9 +1,9 @@
-// Force scroll to top on page refresh
+
 window.addEventListener('beforeunload', function() {
     window.scrollTo(0, 0);
   });
   
-  // CART FUNCTIONALITY
+
   let cart = [];
   
   function addToCart(productId, productTitle, productPrice) {
@@ -96,7 +96,6 @@ window.addEventListener('beforeunload', function() {
       return;
     }
     alert('Proceeding to delivery on ' + deliveryDate + '.');
-    // ... additional checkout logic ...
   }
   
   document.querySelectorAll('.add-to-cart').forEach(button => {
@@ -112,7 +111,6 @@ window.addEventListener('beforeunload', function() {
     });
   });
   
-  // SCROLL ANIMATION (Intersection Observer)
   document.addEventListener("DOMContentLoaded", function() {
     const animatables = document.querySelectorAll('.animatable');
     const observerOptions = { threshold: 0.2 };
@@ -127,7 +125,6 @@ window.addEventListener('beforeunload', function() {
     animatables.forEach(el => observer.observe(el));
   });
   
-  // SEARCH TOGGLE
   const searchIcon = document.querySelector('.search-icon');
   const searchInput = document.querySelector('.search-input');
   searchIcon.addEventListener('click', () => {
@@ -135,13 +132,11 @@ window.addEventListener('beforeunload', function() {
     if (searchInput.style.display === 'block') searchInput.focus();
   });
   
-  // LOGOUT FUNCTION
   function logoutUser() {
     document.cookie = "loggedInUser=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
     window.location.reload();
   }
   
-  // CLICK-OUTSIDE MODALS & PROFILE DROPDOWN
   window.onclick = function(event) {
     const cartModal = document.getElementById('cartModal');
     const messageModal = document.getElementById('messageModal');
@@ -164,7 +159,7 @@ window.addEventListener('beforeunload', function() {
     }
   };
   
-  // CARE TIPS CAROUSEL (Auto-Rotate)
+ 
   let currentSlide = 0;
   function showSlide(index) {
     const slides = document.querySelectorAll('.carousel-slide');
@@ -178,7 +173,7 @@ window.addEventListener('beforeunload', function() {
   }
   setInterval(() => { showSlide(currentSlide + 1); }, 5000);
   
-  // CAT/DOG PRODUCTS TOGGLE
+ 
   const catSection = document.getElementById('catProducts');
   const dogSection = document.getElementById('dogProducts');
   function showCatProducts() {
@@ -192,7 +187,6 @@ window.addEventListener('beforeunload', function() {
     window.scrollTo({ top: dogSection.offsetTop - 60, behavior: 'smooth' });
   }
   
-  // AUTO-SET DELIVERY DATE TO TOMORROW
   document.addEventListener("DOMContentLoaded", function() {
     const deliveryInput = document.getElementById("deliveryDate");
     if (deliveryInput) {
@@ -202,14 +196,12 @@ window.addEventListener('beforeunload', function() {
     }
   });
   
-  // PROFILE DROPDOWN TOGGLE
   function toggleProfileDropdown() {
     const dropdown = document.getElementById('profileDropdown');
     if (!dropdown) return;
     dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
   }
   
-  // MESSAGE MODAL FUNCTIONS
   function openMessageModal() {
     document.getElementById('messageModal').style.display = 'flex';
   }

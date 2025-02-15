@@ -5,9 +5,7 @@ require_once __DIR__ . '/db.php';
 $error = '';
 $success = '';
 
-// Handle Registration
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'register') {
-    // New registration now includes first name and last name
     $firstName = trim($_POST['first_name'] ?? '');
     $lastName  = trim($_POST['last_name'] ?? '');
     $username  = trim($_POST['username'] ?? '');
@@ -15,14 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $email     = trim($_POST['email'] ?? '');
     
     if (!empty($firstName) && !empty($lastName) && !empty($username) && !empty($password) && !empty($email)) {
-        // Check if username already exists
         $stmt = $pdo->prepare("SELECT id FROM users WHERE username = ?");
         $stmt->execute([$username]);
         
         if ($stmt->rowCount() > 0) {
             $error = "Username already exists!";
         } else {
-            // Hash password and create user
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $stmt = $pdo->prepare("INSERT INTO users (first_name, last_name, username, email, password, role) VALUES (?, ?, ?, ?, ?, 'user')");
             
@@ -37,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 }
 
-// Handle Login
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'login') {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
@@ -83,12 +78,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login/Register - Pet Store</title>
-  <!-- Link external CSS for auth pages -->
   <link rel="stylesheet" href="css/auth.css">
 </head>
 <body>
   <div class="auth-container">
-    <!-- Left Side: Welcome Image -->
     <div class="welcome-side">
       <h2>Welcome Back</h2>
       <p>Nice to see you again</p>
@@ -97,7 +90,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
       </p>
     </div>
 
-    <!-- Right Side: Forms -->
     <div class="form-side">
       <?php if (!empty($error)): ?>
         <div class="error"><?php echo $error; ?></div>
@@ -106,7 +98,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         <div class="success"><?php echo $success; ?></div>
       <?php endif; ?>
 
-      <!-- Login Form -->
       <form method="post" action="" id="loginForm">
         <h3>Login Account</h3>
         <div class="form-group">
@@ -130,7 +121,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         </div>
       </form>
 
-      <!-- Register Form (Hidden by default) -->
       <form method="post" action="" id="registerForm" style="display: none;">
         <h3>Create Account</h3>
         <div class="form-group">
@@ -157,7 +147,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     </div>
   </div>
 
-  <!-- Link external JS for auth pages -->
   <script src="js/auth.js"></script>
 </body>
 </html>
