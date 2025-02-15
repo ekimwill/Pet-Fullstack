@@ -1,0 +1,525 @@
+/* --------------------------------------------------
+   GLOBAL RESET & BASE STYLES
+-------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #fafafa;
+    color: #333;
+    overflow-x: hidden;
+    padding-top: 80px; /* space for fixed header */
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* --------------------------------------------------
+     UNIFIED BUTTON STYLING
+  -------------------------------------------------- */
+  .btn {
+    background-color: #8fbc8f;
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background-color: #6aa16a;
+  }
+  .small-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  /* --------------------------------------------------
+     FIXED HEADER
+  -------------------------------------------------- */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+  }
+  .header-left .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #8fbc8f;
+  }
+  .header-center {
+    flex: 1;
+    text-align: center;
+  }
+  .nav-links {
+    list-style: none;
+    display: inline-flex;
+    gap: 1.5rem;
+  }
+  .nav-links a {
+    font-weight: bold;
+    transition: color 0.3s;
+    color: #333;
+  }
+  .nav-links a:hover {
+    color: #8fbc8f;
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+  }
+  
+  /* --------------------------------------------------
+     SEARCH ICON & INPUT
+  -------------------------------------------------- */
+  .search {
+    position: relative;
+  }
+  .search-icon {
+    cursor: pointer;
+    font-size: 1.4rem;
+    color: #333;
+    transition: color 0.3s;
+  }
+  .search-icon:hover {
+    color: #8fbc8f;
+  }
+  .search-input {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    padding: 0.4rem;
+    width: 160px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: none;
+  }
+  
+  /* --------------------------------------------------
+     LOGIN BUTTON & PROFILE
+  -------------------------------------------------- */
+  .login-btn {
+    border: 1px solid #8fbc8f;
+    color: #8fbc8f;
+    font-weight: bold;
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    transition: background 0.3s, color 0.3s;
+  }
+  .login-btn:hover {
+    background: #8fbc8f;
+    color: #fff;
+  }
+  .profile-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #8fbc8f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    user-select: none;
+    transition: opacity 0.3s;
+    cursor: pointer;
+  }
+  .profile-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    display: none;
+    flex-direction: column;
+    width: 120px;
+    z-index: 1500;
+  }
+  .profile-dropdown p {
+    padding: 0.5rem;
+    margin: 0;
+    text-align: center;
+    cursor: pointer;
+  }
+  .profile-dropdown p:hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* --------------------------------------------------
+     CART ICON & COUNT
+  -------------------------------------------------- */
+  .cart-btn {
+    font-size: 1.8rem;
+    color: #333;
+    transition: color 0.3s;
+    cursor: pointer;
+    position: relative;
+  }
+  .cart-btn:hover {
+    color: #8fbc8f;
+  }
+  .cart-count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #ff4f4f;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+    display: none;
+  }
+  
+  /* --------------------------------------------------
+     HERO SECTION
+  -------------------------------------------------- */
+  .hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url('https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1200&h=500')
+                center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+  }
+  .hero-content {
+    position: relative;
+    max-width: 800px;
+    padding: 2rem;
+    animation: fadeInUp 2s ease-out;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero h1 {
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+  .hero p {
+    font-size: 1.8rem;
+    margin-bottom: 2.5rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    line-height: 1.6;
+  }
+  
+  /* --------------------------------------------------
+     CATEGORY SELECTION
+  -------------------------------------------------- */
+  .category-selection {
+    max-width: 1200px;
+    margin: 4rem auto;
+    text-align: center;
+  }
+  .category-selection h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #8fbc8f;
+  }
+  .category-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .category-card {
+    width: 220px;
+    height: 320px;
+    border-radius: 16px;
+    background: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #333;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 10px;
+  }
+  .category-card:hover {
+    transform: translateY(-10px);
+  }
+  .category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+  .category-card h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+  }
+  
+  /* --------------------------------------------------
+     PRODUCTS
+  -------------------------------------------------- */
+  .products-container {
+    max-width: 1200px;
+    margin: 4rem auto;
+    display: none;
+    animation: fadeInProducts 1s ease forwards;
+  }
+  @keyframes fadeInProducts {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .product-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+  .product-card:hover {
+    transform: translateY(-10px);
+  }
+  .product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  .product-card h3 {
+    margin: 0.5rem 0;
+  }
+  .product-card .price {
+    color: #8fbc8f;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+  }
+  
+  /* --------------------------------------------------
+     CARE TIPS CAROUSEL
+  -------------------------------------------------- */
+  .care-tips {
+    position: relative;
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    overflow: hidden;
+    text-align: center;
+  }
+  .care-tips h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: #8fbc8f;
+    border-bottom: 2px solid #8fbc8f;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+  }
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+  .carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  .carousel-slide.active {
+    opacity: 1;
+  }
+  .carousel-slide img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    margin-right: 1rem;
+    border-radius: 8px;
+  }
+  .carousel-slide .tip-text {
+    max-width: 45%;
+    text-align: left;
+    line-height: 1.4;
+    color: #333;
+  }
+  .explore-btn {
+    margin-top: 1.5rem;
+  }
+  
+  /* --------------------------------------------------
+     EVENTS, ABOUT, FOOTER
+  -------------------------------------------------- */
+  section {
+    padding: 4rem 2rem;
+  }
+  .events, .about {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .events h2, .about h2 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #8fbc8f;
+  }
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .event-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+  .event-card:hover {
+    transform: translateY(-10px);
+  }
+  .event-card h3 {
+    color: #8fbc8f;
+    margin-bottom: 1rem;
+  }
+  .event-date {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  .about p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+  
+  /* --------------------------------------------------
+     FOOTER
+  -------------------------------------------------- */
+  footer {
+    background: #333;
+    color: #fff;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  .footer-content h3 {
+    margin-bottom: 1rem;
+  }
+  
+  /* --------------------------------------------------
+     CART & MESSAGE MODAL
+  -------------------------------------------------- */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-content {
+    background: #fff;
+    max-width: 400px;
+    margin: 2rem;
+    padding: 2rem;
+    border-radius: 8px;
+    position: relative;
+    width: 90%;
+  }
+  .modal-content h2 {
+    margin-bottom: 1rem;
+  }
+  .modal-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+  }
+  .modal-content table th,
+  .modal-content table td {
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  .close-modal-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  /* Make the messages table scrollable if many requests */
+  .messages-table-container {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
